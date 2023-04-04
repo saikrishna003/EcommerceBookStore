@@ -20,18 +20,34 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public List<Customers> getCustomerByCustomer_id(Integer customer_id) {
-		return customerRepo.findByCustomerId(customer_id);
+	public Customers getCustomerByCustomerId(Integer customerId) {
+		return customerRepo.findByCustomerId(customerId);
 	}
 
 	@Override
-	public List<Customers> getCustomersStartsWith(String name) {
-		return customerRepo.findByNameStartsWith(name);
-	}
-
-	@Override
-	public List<Customers> getCustomersContains(String name) {
+	public List<Customers> getCustomersNameContains(String name) {
 		return customerRepo.findByNameContainingIgnoreCase(name);
+	}
+
+	@Override
+	public Customers saveCustomer(Customers customer) {
+		return customerRepo.save(customer);
+	}
+
+	@Override
+	public Customers updateCustomer(Customers customer, Customers updateCustomer) {
+		if(updateCustomer.getName() != null) customer.setName(updateCustomer.getName());
+		if(updateCustomer.getAddress() != null) customer.setAddress(updateCustomer.getAddress());
+		if(updateCustomer.getCity() != null) customer.setCity(updateCustomer.getCity());;
+		if(updateCustomer.getCountry() != null) customer.setCountry(updateCustomer.getCountry());
+		if(updateCustomer.getZipcode() != 0) customer.setZipcode(updateCustomer.getZipcode());
+		if(updateCustomer.getState() != null) customer.setState(updateCustomer.getState());
+		return customerRepo.save(customer);
+	}
+
+	@Override
+	public void deleteCustomer(Integer customerId) {
+		customerRepo.deleteByCustomerId(customerId);
 	}
 
 }

@@ -8,10 +8,14 @@ public interface CustomerService {
 
 	List<Customers> getAllCustomers();
 
-	List<Customers> getCustomerByCustomer_id(Integer customer_id);
+	Customers getCustomerByCustomerId(Integer customerId);
 
-	List<Customers> getCustomersStartsWith(String name);
+	List<Customers> getCustomersNameContains(String name);
 
-	List<Customers> getCustomersContains(String name);
+	Customers saveCustomer(Customers customer);
+	
+	Customers updateCustomer(Customers customers, Customers updatCustomer);
+
+	void deleteCustomer(Integer customerId);
 
 }

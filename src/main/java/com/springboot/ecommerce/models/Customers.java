@@ -2,26 +2,38 @@ package com.springboot.ecommerce.models;
 
 import java.util.Objects;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "Customers")
 public class Customers {
 	
 	@Id
-	private Object _id;
-	private Integer customer_id;
+	@Field("_id")
+	private ObjectId _id;
+	
+	@Field("customer_id")
+	@NotNull
+	private Integer customerId;
+	
+	@NotBlank
 	private String name;
 	private String address;
 	private String city;
 	private String state;
 	private Integer zipcode;
 	private String country;
-	public Integer getCustomer_id() {
-		return customer_id;
+	
+	public Integer getCustomerId() {
+		return customerId;
 	}
-	public void setCustomer_id(Integer customer_id) {
-		this.customer_id = customer_id;
+	public void setCustomerId(Integer customerId) {
+		this.customerId = customerId;
 	}
 	public String getName() {
 		return name;
@@ -61,12 +73,12 @@ public class Customers {
 	}
 	@Override
 	public String toString() {
-		return "Customers [customer_id=" + customer_id + ", name=" + name + ", address=" + address + ", city=" + city
+		return "Customers [customerId=" + customerId + ", name=" + name + ", address=" + address + ", city=" + city
 				+ ", state=" + state + ", zipcode=" + zipcode + ", country=" + country + "]";
 	}
 	@Override
 	public int hashCode() {
-		return Objects.hash(address, city, country, customer_id, name, state, zipcode);
+		return Objects.hash(address, city, country, customerId, name, state, zipcode);
 	}
 	@Override
 	public boolean equals(Object obj) {
@@ -78,7 +90,7 @@ public class Customers {
 			return false;
 		Customers other = (Customers) obj;
 		return Objects.equals(address, other.address) && Objects.equals(city, other.city)
-				&& Objects.equals(country, other.country) && Objects.equals(customer_id, other.customer_id)
+				&& Objects.equals(country, other.country) && Objects.equals(customerId, other.customerId)
 				&& Objects.equals(name, other.name) && Objects.equals(state, other.state)
 				&& Objects.equals(zipcode, other.zipcode);
 	}
