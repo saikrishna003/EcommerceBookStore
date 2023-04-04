@@ -7,6 +7,7 @@ import javax.validation.constraints.NotNull;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -18,6 +19,7 @@ public class Customers {
 	private ObjectId _id;
 	
 	@Field("customer_id")
+	@Indexed(unique = true)
 	@NotNull
 	private Integer customerId;
 	
