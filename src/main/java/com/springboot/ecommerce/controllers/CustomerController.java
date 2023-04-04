@@ -36,7 +36,7 @@ public class CustomerController {
 		if(name == null)
 			customerService.getAllCustomers().forEach(customers::add);
 		else
-			customerService.getCustomersNameContains(name).forEach(customers::add);
+			customerService.getCustomersByName(name).forEach(customers::add);
 		if(customers.isEmpty())
 			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 		return new ResponseEntity<List<Customers>>(customers, HttpStatus.OK);

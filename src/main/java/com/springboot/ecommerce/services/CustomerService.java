@@ -10,7 +10,7 @@ public interface CustomerService {
 
 	Customers getCustomerByCustomerId(Integer customerId);
 
-	List<Customers> getCustomersNameContains(String name);
+	List<Customers> getCustomersByName(String name);
 
 	Customers saveCustomer(Customers customer);
 	
