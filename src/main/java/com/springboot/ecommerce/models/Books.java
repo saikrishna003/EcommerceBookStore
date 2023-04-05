@@ -1,6 +1,11 @@
 package com.springboot.ecommerce.models;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
@@ -8,12 +13,15 @@ import org.springframework.data.mongodb.core.mapping.Field;
 public class Books {
 
 	@Id
-	private Object _id;
+	private ObjectId _id;
 	@Field("book_id")
+	@Indexed(unique = true)
+	@NotNull
 	private Integer bookId;
 	private String authors;
 	@Field("original_publication_year")
 	private Integer originalPublicationYear;
+	@NotBlank
 	private String title;
 	@Field("language_code")
 	private String languageCode;
